@@ -1,0 +1,30 @@
+.task-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fdfdfd;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .task-form-container:focus-within {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+  
+  .task-form-container input,
+  .task-form-container textarea,
+  .task-form-container select {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .task-form-container input:focus,
+  .task-form-container textarea:focus,
+  .task-form-container select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    outline: none;
+  }
+  
+  .btn-success {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  

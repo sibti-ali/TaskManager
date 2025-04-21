@@ -1,0 +1,39 @@
+.table-container {
+    border-radius: 16px;
+    padding: 2rem;
+    background: #f4f6f8;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05), -5px -5px 15px rgba(255, 255, 255, 0.6);
+  }
+  
+  .table {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .table thead th {
+    background-color: #ffffff;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+    transition: background-color 0.3s ease;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #eaf1f8 !important;
+    cursor: pointer;
+  }
+  
+  .table tbody td {
+    color: #333;
+    font-size: 0.95rem;
+    vertical-align: middle;
+  }
+  
+  .table .badge {
+    font-size: 0.85rem;
+    padding: 0.4em 0.7em;
+    letter-spacing: 0.5px;
+  }
+  
+  
+  
