@@ -32,15 +32,8 @@ export default function Home() {
   );
 
   return (
-    <div className="container mt-4">
-      <h1 className="mb-4">Task Manager</h1>
-
-      <div className="mb-3">
-        <Link to="/create" className="btn btn-success">
-          Create New Task
-        </Link>
-      </div>
-
+    
+    <>
       <div className="mb-3">
         <label htmlFor="taskSearch" className="form-label">Search tasks</label>
         <input
@@ -54,8 +47,7 @@ export default function Home() {
         />
       </div>
 
-      {/* Pass filtered tasks directly to TaskTable */}
       <TaskTable tasks={filteredTasks} />
-    </div>
+    </>
   );
 }

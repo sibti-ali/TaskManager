@@ -1,0 +1,13 @@
+/* src/pages/HomeLayout.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  .nav-link {
+    color: #333;
+  }
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  
