@@ -1,43 +1,46 @@
-// src/components/Layout.js
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom'; // This will render the child route components
+import React, { useState } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import '../styling/HomeLayout.css';
 
 export default function Layout() {
-  return (
-    <div className="d-flex flex-column vh-100">
-      {/* Header */}
-      <header className="bg-dark text-white py-3 px-4">
-        <h3 className="mb-0">Task Manager Dashboard</h3>
-      </header>
+	const location = useLocation();
+	const currentPath = location.pathname;
 
-      <div className="d-flex flex-grow-1">
-        {/* Side Navigation */}
-        <nav className="bg-light border-end p-3" style={{ width: '220px' }}>
-          <ul className="nav flex-column">
-            <li className="nav-item mb-2">
-              <Link to="/create" className="btn btn-success w-100">+ Create Task</Link>
-            </li>
-            <li className="nav-item mb-2">
-              <Link to="/" className="nav-link">🏠 Home</Link>
-            </li>
-            <li className="nav-item mb-2">
-              <Link to="/kanban" className="nav-link">🗂 Kanban Board</Link>
-            </li>
-            
-          </ul>
-        </nav>
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-        {/* Main Content (This is where child routes will render) */}
-        <main className="flex-grow-1 p-4">
-          <Outlet /> {/* Renders the child route content */}
-        </main>
-      </div>
+	const toggleMenu = () => {
+		setIsMenuOpen(prev => !prev);
+	};
 
-      {/* Footer */}
-      <footer className="bg-light text-center py-2 border-top">
-        <small>© {new Date().getFullYear()} Task Manager. All rights reserved.</small>
-      </footer>
-    </div>
-  );
+	return (
+		<>
+			<div className="app-wrapper">
+				<header className="main-header">
+					<div className="container header-content">
+						<Link to="/" className="logo">TaskManager</Link>
+
+						<nav className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
+							<Link className='btn btn-primary btn-sm createbtn' to="/create">Create Task</Link>
+							<Link to="/">Home</Link>
+							<Link to="/kanban">Kanban view</Link>
+						</nav>
+
+						<button className="burger" onClick={toggleMenu} aria-label="Toggle navigation menu">
+							<span className="burger-bar"></span>
+							<span className="burger-bar"></span>
+							<span className="burger-bar"></span>
+						</button>
+					</div>
+				</header>
+
+				<main className="main-content container">
+					<Outlet />
+				</main>
+
+				<footer className="main-footer container">
+					<p>&copy; 2025 Task Manager. All rights reserved.</p>
+				</footer>
+			</div>
+		</>
+	);
 }

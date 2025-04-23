@@ -6,91 +6,89 @@ import '../styling/KanbanBoard.css';
 const columns = ['pending', 'committed', 'completed'];
 
 export default function KanbanBoard() {
-  const [tasks, setTasks] = useState([]);
+	const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    const loadTasks = async () => {
-      try {
-        const response = await fetchTasks();
-        if (Array.isArray(response)) setTasks(response);
-        else console.error('Invalid task data');
-      } catch (err) {
-        console.error('Error fetching tasks:', err);
-      }
-    };
-    loadTasks();
-  }, []);
+	useEffect(() => {
+		const loadTasks = async () => {
+			try {
+				const response = await fetchTasks();
+				if (Array.isArray(response)) setTasks(response);
+				else console.error('Invalid task data');
+			} catch (err) {
+				console.error('Error fetching tasks:', err);
+			}
+		};
+		loadTasks();
+	}, []);
 
-  const handleDragEnd = async (result) => {
-    const { source, destination, draggableId } = result;
+	const handleDragEnd = async (result) => {
+		const { source, destination, draggableId } = result;
 
-    if (!destination || source.droppableId === destination.droppableId) return;
+		if (!destination || source.droppableId === destination.droppableId) return;
 
-    const taskId = parseInt(draggableId);
-    const newStatus = destination.droppableId;
+		const taskId = parseInt(draggableId);
+		const newStatus = destination.droppableId;
 
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === taskId ? { ...task, status: newStatus } : task
-      )
-    );
+		setTasks((prev) =>
+			prev.map((task) =>
+				task.id === taskId ? { ...task, status: newStatus } : task
+			)
+		);
 
-    try {
-      await updateTaskStatus(taskId, newStatus);
-    } catch (err) {
-      console.error('Failed to update status:', err);
-    }
-  };
+		try {
+			await updateTaskStatus(taskId, newStatus);
+		} catch (err) {
+			console.error('Failed to update status:', err);
+		}
+	};
 
-  return (
-    <div className="kanban-container">
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="row">
-          {columns.map((column) => (
-            <div key={column} className="col">
-              <h5 className="text-capitalize text-center mb-3">{column}</h5>
-              <Droppable droppableId={column}>
-                {(provided, snapshot) => (
-                  <div
-                    className={`kanban-column p-2 rounded ${
-                      snapshot.isDraggingOver ? 'bg-light' : 'bg-white'
-                    }`}
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                    style={{ minHeight: '200px' }}
-                  >
-                    {tasks
-                      .filter((task) => task.status === column)
-                      .map((task, index) => (
-                        <Draggable
-                          key={task.id}
-                          draggableId={String(task.id)}
-                          index={index}
-                        >
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              className={`task-card mb-2 p-3 border rounded ${
-                                snapshot.isDragging ? 'bg-warning' : 'bg-white'
-                              }`}
-                            >
-                              <strong>{task.title}</strong>
-                              <p className="mb-1">{task.description}</p>
-                              <small>Due: {new Date(task.dueDate).toLocaleDateString()}</small>
-                            </div>
-                          )}
-                        </Draggable>
-                      ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </div>
-          ))}
-        </div>
-      </DragDropContext>
-    </div>
-  );
+	return (
+		<div className="kanban-container">
+			<DragDropContext onDragEnd={handleDragEnd}>
+				<div className="row">
+					{columns.map((column) => (
+						<div key={column} className="col">
+							<h5 className="text-capitalize text-center mb-3">{column}</h5>
+							<Droppable droppableId={column}>
+								{(provided, snapshot) => (
+									<div
+										className={`kanban-column p-2 rounded ${snapshot.isDraggingOver ? 'bg-light' : 'bg-white'
+											}`}
+										ref={provided.innerRef}
+										{...provided.droppableProps}
+										style={{ minHeight: '200px' }}
+									>
+										{tasks
+											.filter((task) => task.status === column)
+											.map((task, index) => (
+												<Draggable
+													key={task.id}
+													draggableId={String(task.id)}
+													index={index}
+												>
+													{(provided, snapshot) => (
+														<div
+															ref={provided.innerRef}
+															{...provided.draggableProps}
+															{...provided.dragHandleProps}
+															className={`task-card mb-2 p-3 border rounded ${snapshot.isDragging ? 'bg-warning' : 'bg-white'
+																}`}
+														>
+															<strong>{task.title}</strong>
+															<p className="mb-1">{task.description}</p>
+															<small>Due: {new Date(task.dueDate).toLocaleDateString()}</small>
+														</div>
+													)}
+												</Draggable>
+											))}
+										{provided.placeholder}
+									</div>
+								)}
+							</Droppable>
+						</div>
+					))}
+				</div>
+			</DragDropContext>
+		</div>
+	);
 }

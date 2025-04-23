@@ -34,6 +34,14 @@
     padding: 0.4em 0.7em;
     letter-spacing: 0.5px;
   }
+  .table-hover tbody tr:hover {
+    background-color: #f8f9fa; /* light grey background */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: scale(1.005);
+    transition: all 0.2s ease-in-out;
+    z-index: 1;
+    position: relative;
+  }
   
   
   
