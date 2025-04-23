@@ -28,7 +28,7 @@ export default function Home() {
 	const filteredTasks = tasks.filter(task =>
 		task.title.toLowerCase().includes(search.toLowerCase()) ||
 		task.description.toLowerCase().includes(search.toLowerCase()) ||
-		task.id == search
+		task.id === search
 	);
 
 	return (
