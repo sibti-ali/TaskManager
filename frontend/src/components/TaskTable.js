@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSort, FaSortUp, FaSortDown, FaTrash } from 'react-icons/fa';
 import { updateTaskStatus, deleteTask } from '../api/taskApi';
+import DOMPurify from 'dompurify';
 import '../styling/TaskTable.css';
 import '../styling/Common.css';
 
@@ -129,6 +130,7 @@ export default function TaskTable({ tasks: initialTasks }) {
 							</tr>
 						) : (
 							currentTasks.map((task) => (
+							
 								<tr
 									key={task.id}
 									onClick={() => handleRowClick(task.id)}
@@ -137,7 +139,7 @@ export default function TaskTable({ tasks: initialTasks }) {
 								>
 									<td>{task.id}</td>
 									<td>{task.title}</td>
-									<td>{task.description}</td>
+									<td dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(task.description) }} />
 									<td>{formatDate(task.dueDate)}</td>
 									<td>
 										<div className="d-flex gap-2">

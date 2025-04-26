@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.8.4",
     "bootstrap": "^5.3.5",
+    "dompurify": "^3.2.5",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.5",
     "quill": "^2.0.3",

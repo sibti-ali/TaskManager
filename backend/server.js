@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { rateLimit } from 'express-rate-limit'
+import helmet from 'helmet';
 import taskRoutes from './routes/taskRoutes.js';
 import db from './config/db.js';
 
@@ -17,6 +19,8 @@ db.getConnection()
 // Middleware
 app.use(cors()); // Enable CORS
 app.use(express.json()); // Parse JSON bodies
+app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }))//Use a custom ratelimiter
+app.use(helmet());// Secure HTTP response headers
 
 // Routes
 app.use('/api/tasks', taskRoutes);
