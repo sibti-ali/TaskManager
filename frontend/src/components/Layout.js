@@ -15,19 +15,22 @@ export default function Layout() {
 			<div className="app-wrapper">
 				<header className="main-header">
 					<div className="container header-content">
-						<Link to="/" className="logo">TaskManager</Link>
+					
+						<div className="logo-burger">
+							<Link to="/" className="logo">TaskManager</Link>
+
+							<button className="burger" onClick={toggleMenu} aria-label="Toggle navigation menu">
+							<span className="burger-bar"></span>
+							<span className="burger-bar"></span>
+							<span className="burger-bar"></span>
+							</button>
+						</div>
 
 						<nav className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
-							<Link className='btn btn-primary btn-sm createbtn' to="/create">Create Task</Link>
-							<Link to="/">Home</Link>
-							<Link to="/kanban">Kanban view</Link>
+						<Link className='btn btn-primary btn-sm createbtn' to="/create">Create Task</Link>
+						<Link to="/">Home</Link>
+						<Link to="/kanban">Kanban view</Link>
 						</nav>
-
-						<button className="burger" onClick={toggleMenu} aria-label="Toggle navigation menu">
-							<span className="burger-bar"></span>
-							<span className="burger-bar"></span>
-							<span className="burger-bar"></span>
-						</button>
 					</div>
 				</header>
 
@@ -35,7 +38,7 @@ export default function Layout() {
 					<Outlet />
 				</main>
 
-				<footer className="main-footer container">
+				<footer className="main-footer bg-dark text-white text-center py-3">
 					<p>&copy; 2025 Task Manager. All rights reserved.</p>
 				</footer>
 			</div>

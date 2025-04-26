@@ -59,13 +59,10 @@
 /* ========== Responsive Navigation ========== */
 @media (max-width: 768px) {
   .nav-links {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
     flex-direction: column;
     background-color: #1d1f21;
     padding: 1rem;
+    width: 100%;
     display: none;
   }
 
@@ -75,9 +72,25 @@
 
   .burger {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    
+  }
+  .logo-burger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* This ensures the burger button is pushed to the right */
+    width: 100%; /* Make sure it takes the full width of the container */
   }
 }
 
-.createbtn{
-  margin-top: -2px;
-}
+
