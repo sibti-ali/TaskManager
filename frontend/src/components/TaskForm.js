@@ -1,4 +1,3 @@
-// src/pages/TaskForm.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { addTask, getTaskById, updateTask } from '../api/taskApi';
@@ -32,16 +31,6 @@ export default function TaskForm() {
 			});
 		  }
 		} catch (error) {
-		  // Redirect to ErrorPage with error details
-		  navigate('/error', {
-			state: {
-			  errorDetails: {
-				message: error.message,
-				status: error.response?.status || 'Unknown',
-				data: error.response?.data || {},
-			  },
-			},
-		  });
 		}
 	  };
   

@@ -19,7 +19,7 @@ db.getConnection()
 // Middleware
 app.use(cors()); // Enable CORS
 app.use(express.json()); // Parse JSON bodies
-app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }))//Use a custom ratelimiter
+app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 400 }))//Use a custom ratelimiter (Set higher for testing purposes)
 app.use(helmet());// Secure HTTP response headers
 
 // Routes
