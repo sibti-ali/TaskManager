@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import TaskForm from './components/TaskForm';
 import Layout from './components/Layout';
 import KanbanBoard from './components/KanbanBoard';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<Route path="/create" element={<TaskForm />} />
 					<Route path="/edit/:taskId" element={<TaskForm />} />
 					<Route path="/kanban" element={<KanbanBoard />} />
+					<Route path="/error" element={<ErrorPage />} />
 				</Route>
 			</Routes>
 

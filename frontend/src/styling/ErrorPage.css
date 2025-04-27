@@ -1,0 +1,32 @@
+.error-container {
+    text-align: center;
+    padding: 4rem;
+  }
+  
+  .error-heading {
+    font-size: 2.5rem;
+    color: #ff4c4c;
+  }
+  
+  .error-message {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .error-details {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #333;
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+  }
+  
+  .error-link {
+    margin-top: 2rem;
+    display: inline-block;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  

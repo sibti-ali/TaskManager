@@ -19,19 +19,36 @@ export default function TaskForm() {
   });
 
   useEffect(() => {
-    if (isEditMode) {
-      getTaskById(taskId).then(task => {
-        if (task) {
-          setFormData({
-            title: task.title || '',
-            description: task.description || '',
-            dueDate: task.dueDate?.substring(0, 10) || '',
-            status: task.status || 'pending',
-          });
-        }
-      });
-    }
-  }, [taskId, isEditMode]);
+	if (isEditMode) {
+	  const fetchTask = async () => {
+		try {
+		  const task = await getTaskById(taskId);
+		  if (task) {
+			setFormData({
+			  title: task.title || '',
+			  description: task.description || '',
+			  dueDate: task.dueDate?.substring(0, 10) || '',
+			  status: task.status || 'pending',
+			});
+		  }
+		} catch (error) {
+		  // Redirect to ErrorPage with error details
+		  navigate('/error', {
+			state: {
+			  errorDetails: {
+				message: error.message,
+				status: error.response?.status || 'Unknown',
+				data: error.response?.data || {},
+			  },
+			},
+		  });
+		}
+	  };
+  
+	  fetchTask();
+	}
+  }, [taskId, isEditMode, navigate]);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
