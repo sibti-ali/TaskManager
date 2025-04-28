@@ -56,8 +56,8 @@ const handleValidationErrors = (req, res, next) => {
  *       properties:
  *         id:
  *           type: integer
- *           SQL DataType: INT (Auto Increment)
- *           description: The task ID
+ *           SQL DataType: INT 
+ *           description: The task ID based on Auto increment inside mysql (does not need to be passed)
  *         title:
  *           type: string
  *           SQL DataType: VARCHAR(255)
@@ -90,7 +90,7 @@ const handleValidationErrors = (req, res, next) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Task'
+ *            
  *     responses:
  *       201:
  *         description: Task created successfully
@@ -162,7 +162,7 @@ router.get('/unittest/next-id', async (req, res) => {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Task'
+ *                
  *       500:
  *         description: Internal server error
  */
@@ -194,7 +194,7 @@ router.get('/', async (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Task'
+ *               
  *       404:
  *         description: Task not found
  *       500:
@@ -273,7 +273,7 @@ router.put('/:id/status',
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Task'
+ *             
  *     responses:
  *       200:
  *         description: Task updated successfully
