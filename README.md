@@ -59,8 +59,8 @@ npm install
 
 To run the application locally, follow these steps:
 
-0. Connect to the database: Setup the .env files inside the client and server folder:
- example .env in server:
+0. Connect to the database: Setup the .env files inside the backend folder:
+ example .env in backend:
 
  ```sh
    DB_HOST= localhost
