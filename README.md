@@ -100,7 +100,7 @@ To deploy this application to a production environment, follow these high-level 
 3. Build the frontend for production:
 
 ```sh
-cd client
+cd frontend
 npm run build
 ```
 
@@ -115,7 +115,7 @@ npm run build
 3. Pull the repository and install dependencies.
 4. Set up a process manager like PM2:
    ```sh
-   pm2 start server/index.js --name contacts-app
+   pm2 start server/server.js --name task-app
    ```
 5. Configure Nginx or another reverse proxy.
 6. Deploy the frontend to an S3 bucket and serve via CloudFront.
