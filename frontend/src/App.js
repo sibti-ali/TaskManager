@@ -24,7 +24,6 @@ function App() {
 function MainApp() {
 	const { error, setError } = useErrorContext();
 	const navigate = useNavigate();
-	const errorDetails = { ...error };
 	useEffect(() => {
 		registerSetGlobalError(setError);
 	}, [setError]);

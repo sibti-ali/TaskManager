@@ -48,3 +48,9 @@ export async function deleteTask(id) {
   const [result] = await db.execute(`DELETE FROM tasks WHERE id = ?`, [id]);
   return result.affectedRows > 0;
 }
+
+export async function nextId() {
+  const [rows] = await db.execute('SHOW TABLE STATUS LIKE "tasks"');
+  const nextId = rows[0].Auto_increment;
+  return nextId;
+}
